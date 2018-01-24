@@ -59,6 +59,7 @@ class TopicList extends React.Component {
     const { location } = this.props
     let query
     if (location) query = location.search ? queryString.parse(location.search) : { tab: '推荐' }
+    this.lv.scrollTo(0, 0)
     this.props.getTopListWithRefresh(query)
   }
 

@@ -125,7 +125,7 @@ export function getTopList(state) {
           // eslint-disable-next-line
           pullState === 'down' ? dispatch(toggleRefresh(true)) : dispatch(toggleLoading(true))
         } else alert('获取文章列表出错')
-      })
+      }).catch(e => console.error(e))
   }
 }
 
@@ -143,7 +143,7 @@ export function getTopListWithChange(state) {
           dispatch(toggleRefresh(false))
           dispatch(toggleLoading(false))
         }
-      })
+      }).catch(e => console.error(e))
   }
 }
 export function getTopListWithRefresh(state) {
@@ -160,7 +160,7 @@ export function getTopListWithRefresh(state) {
           dispatch(toggleRefresh(false))
           dispatch(toggleLoading(false))
         }
-      })
+      }).catch(e => console.error(e))
   }
 }
 
@@ -176,7 +176,7 @@ export function getTopListWithLoadMore(state) {
           dispatch(loadMoreByXname(res.data))
           dispatch(toggleLoading(false))
         }
-      })
+      }).catch(e => console.error(e))
   }
 }
 
