@@ -13,4 +13,5 @@ const redis = new Redis.Cluster([
   { port: 7004, host: '61.147.124.76' },
 ])
 
+redis.on('error', () => console.log('redis error'))
 module.exports = redis

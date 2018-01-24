@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
 import { withRouter } from 'react-router-dom'
-import { NavBar, Icon, Tabs, ListView, PullToRefresh } from 'antd-mobile'
+import { NavBar, Tabs, ListView, PullToRefresh } from 'antd-mobile'
 
 import './topic-list.styl'
 import Row from '../../component/row/row'
@@ -153,10 +153,10 @@ class TopicList extends React.Component {
             icon={<NewIcon type="setting" color="red" />}
             onLeftClick={this.handleNavBarLeftClick}
             rightContent={[
-              <Icon key="0" type="search" style={{ marginRight: '0.426666667rem' }} />,
+              <NewIcon key="loading1" onClick={this.onRefresh} type="loading1" style={{ marginRight: '2.64rem', animation: this.props.topic.refreshing ? 'cirle-anim 1s linear infinite' : '' }} />,
             ]}
           >
-            舆情推荐
+            <span onClick={this.onRefresh}>舆情推荐</span>
           </NavBar>
           {tabs.length !== 0 ?
             <Tabs

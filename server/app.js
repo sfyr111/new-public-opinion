@@ -32,17 +32,28 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api', require('./util/proxy')) // 代理
 
 app.use(session({
-  store: new RedisStore({ client: redisClient, logErrors: true }),
-  secret: 'new-public-opinion',
-  name: 'yid',
+  // store: new RedisStore({ client: redisClient, logErrors: true }),
+  secret: 'zzz',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
+  name: 'MSEID',
   cookie: {
-    // maxAge: 7 * 24 * 60 * 60 * 1000, // 一星期
-    maxAge: 5 * 60 * 1000, // 一分钟
-    secure: false,
+    maxAge: 366 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
   },
 }))
+// app.use(session({
+//   store: new RedisStore({ client: redisClient, logErrors: true }),
+//   secret: 'new-public-opinion',
+//   name: 'yid',
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: {
+//     // maxAge: 7 * 24 * 60 * 60 * 1000, // 一星期
+//     maxAge: 366 * 24 * 60 * 60 * 1000, // 一分钟
+//     secure: false,
+//   },
+// }))
 app.use('*', (req, res, next) => {
   next()
 })
