@@ -38,7 +38,7 @@ const loginUserByUserToken = async function (req, res) {
       })
     }
     req.session.user = user
-    console.log(req.session)
+    // console.log(req.session)
     res.json({
       code: 0,
       data: {

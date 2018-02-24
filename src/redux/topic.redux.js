@@ -1,5 +1,6 @@
 import { ListView } from 'antd-mobile'
 import api from '../common/api/service'
+import { getParameterByName } from '../common/js/util'
 // import { Dispatch } from 'redux'
 
 const PULL_DOWN_GET_TOPIC_LIST = 'PULL_DOWN_GET_TOPIC_LIST'
@@ -131,10 +132,11 @@ export function getTopList(state) {
 
 export function getTopListWithChange(state) {
   const { tab } = state
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(toggleRefresh(true))
     dispatch(toggleLoading(true))
-    api.get(`/topic/?xname=${tab}&limitSize=2`)
+    const { userToken } = getState().user
+    api.get(`/topic/?xname=${tab}&limitSize=2&userToken=${!userToken ? getParameterByName('userToken', window.location.href) : userToken}`)
       .then(res => {
         if (res.code === 0) {
           res.data.list.forEach(el => el.img = el.img.split(';'))
@@ -148,10 +150,11 @@ export function getTopListWithChange(state) {
 }
 export function getTopListWithRefresh(state) {
   const { tab } = state
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(toggleRefresh(true))
     dispatch(toggleLoading(true))
-    api.get(`/topic/?xname=${tab}&limitSize=1`)
+    const { userToken } = getState().user
+    api.get(`/topic/?xname=${tab}&limitSize=1&userToken=${!userToken ? getParameterByName('userToken', window.location.href) : userToken}`)
       .then(res => {
         if (res.code === 0) {
           res.data.list.forEach(el => el.img = el.img.split(';'))
@@ -166,9 +169,10 @@ export function getTopListWithRefresh(state) {
 
 export function getTopListWithLoadMore(state) {
   const { tab } = state
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch(toggleLoading(true))
-    api.get(`/topic/?xname=${tab}&limitSize=2`)
+    const { userToken } = getState().user
+    api.get(`/topic/?xname=${tab}&limitSize=2&userToken=${!userToken ? getParameterByName('userToken', window.location.href) : userToken}`)
       .then(res => {
         if (res.code === 0) {
           res.data.list.forEach(el => el.img = el.img.split(';'))
