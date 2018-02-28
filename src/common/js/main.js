@@ -1,8 +1,7 @@
 import 'babel-polyfill'
 import './flexible'
 
-import 'common/stylus/index.styl'
-import 'common/fonts/iconfont.css'
+import '../stylus/index.styl'
 
 // import FastClick from 'fastclick'
 

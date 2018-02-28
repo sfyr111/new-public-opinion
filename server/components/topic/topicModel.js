@@ -47,4 +47,5 @@ const TopicModel = mongoose.model('yq2_NamedOpinionBean', TopicSchema, 'yq2_Name
 
 module.exports = {
   TopicModel,
+  TopicSchema,
 }

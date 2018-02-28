@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { NavBar, WhiteSpace, WingBlank } from 'antd-mobile'
 import dateFormat from '../../common/js/tools/date/format'
+import api from '../../common/api/service'
 import './topic-detail.styl'
 
 
@@ -13,6 +14,8 @@ import './topic-detail.styl'
 class TopicDetail extends React.Component {
   componentDidMount() {
     // do something here
+    console.log(this.props.match.params.id)
+    api.put('/history', { userToken: this.props.user.userToken, topicId: this.props.topic.topicDetail._id })
   }
 
   render() {
@@ -47,10 +50,14 @@ class TopicDetail extends React.Component {
 
 TopicDetail.propTypes = {
   topic: PropTypes.any,
+  user: PropTypes.any,
+  match: PropTypes.any,
 }
 
 TopicDetail.defaultProps = {
   topic: '',
+  user: '',
+  match: '',
 }
 
 export default TopicDetail

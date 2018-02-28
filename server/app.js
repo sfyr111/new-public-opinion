@@ -12,6 +12,7 @@ const index = require('./components/index/indexRoute')
 const user = require('./components/user/userRoute')
 const topic = require('./components/topic/topicRoute')
 const channel = require('./components/channel/channelRoute')
+const history = require('./components/history/historyRoute')
 
 require('./services/mongoose-service')
 
@@ -62,6 +63,7 @@ app.use('/', index)
 app.use('/user', user)
 app.use('/topic', topic)
 app.use('/channel', channel)
+app.use('/history', history)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

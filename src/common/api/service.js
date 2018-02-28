@@ -54,6 +54,19 @@ export default {
       return response
     }).then(parseResponse).then(checkStatus)
   },
+  put(url, data) {
+    return axios({
+      method: 'put',
+      url,
+      data: qs.stringify(data),
+      timeout: 20000,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+    }).then(response => {
+      return response
+    }).then(parseResponse).then(checkStatus)
+  },
   get(url, params) {
     return axios({
       method: 'get',
